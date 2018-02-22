@@ -9,8 +9,8 @@
         <module name="assignment1-soen691-aspirator" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="assignment1-soen691-aspirator" target="1.5" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="assignment1-soen691-aspirator" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

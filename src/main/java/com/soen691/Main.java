@@ -36,10 +36,12 @@ public class Main {
      */
     private static ArrayList<String> parseTextFile(String path){
 
+        File file = new File(Main.class.getClassLoader().getResource(path).getFile());
+
         ArrayList<String> javaFiles = new ArrayList<String>();
 
         //read file into stream, try-with-resources
-        try (Stream<String> stream = Files.lines(Paths.get(path))) {
+        try (Stream<String> stream = Files.lines(Paths.get(Main.class.getClassLoader().getResource(path).getPath()))) {
 
             stream.forEach(line->{
                 javaFiles.add(line);

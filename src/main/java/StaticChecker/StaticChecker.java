@@ -11,9 +11,15 @@ public class StaticChecker {
      * @return boolean true or false
      */
     public static boolean emptyErrorChecker(String codeBlock) {
+        boolean empty = false;
+
         //if catch block is empty, return true
+        codeBlock = codeBlock.trim().replaceAll("\\s ", "");
+        if(codeBlock.equals("{}") || codeBlock.equals("{\n}")) empty = true;
+
+
        // JavaParser.parse()
-        return false;
+        return empty;
     }
 
 
