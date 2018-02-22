@@ -11,39 +11,33 @@ public class StaticChecker {
      * @return boolean true or false
      */
     public static boolean emptyErrorChecker(String codeBlock) {
-        boolean empty = false;
-
         //if catch block is empty, return true
-        codeBlock = codeBlock.trim().replaceAll("\\s ", "");
-        if(codeBlock.equals("{}") || codeBlock.equals("{\n}")) empty = true;
-
-
-       // JavaParser.parse()
-        return empty;
+        codeBlock = clean(codeBlock);
+        return (codeBlock.equals("{}") || codeBlock.equals("{\n}"));
     }
 
-
+    private static String clean(String codeBlock){
+        return codeBlock.trim().replaceAll("\\s ", "");
+    }
     /**
      * Uses the parser to parse the code block and then checks if the code block over catches the exception (e.g. catches twice which is useless code)
-     * @param codeblock the code to check
+     * @param codeBlock the code to check
      * @return boolean true or false
      */
-    public static boolean overCatchChecker(String codeblock) {
-
-        return false;
+    public static boolean overCatchChecker(String codeBlock) {
+        codeBlock = clean(codeBlock);
+        return (codeBlock.contains("exit()") || codeBlock.contains("abort"));
     }
 
 
     /**
      * Uses the parser to parse the code block and then checks if the code block contains "TODO" or "FIXME"
-     * @param codeblock the code to check
+     * @param codeBlock the code to check
      * @return boolean true or false
      */
-    public static boolean uselessPhrasesChecker(String codeblock) {
-        if(codeblock.contains("FIXME") || codeblock.contains("TODO"))
-            return true;
-
-        return false;
+    public static boolean uselessPhrasesChecker(String codeBlock) {
+        codeBlock = clean(codeBlock);
+        return (codeBlock.contains("FIXME") || codeBlock.contains("TODO"));
     }
 
 }

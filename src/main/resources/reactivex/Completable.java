@@ -1792,7 +1792,9 @@ public abstract class Completable implements CompletableSource {
             s = RxJavaPlugins.onSubscribe(this, s);
 
             subscribeActual(s);
-        } catch (NullPointerException ex) {} catch (Throwable ex) {
+        } catch (NullPointerException ex) { //NOPMD
+            throw ex;
+        } catch (Throwable ex) {
             Exceptions.throwIfFatal(ex);
             RxJavaPlugins.onError(ex);
             throw toNpe(ex);

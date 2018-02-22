@@ -35,10 +35,7 @@ public class Main {
      * returns an array of java code names we need to analyze.
      */
     private static ArrayList<String> parseTextFile(String path){
-
-        File file = new File(Main.class.getClassLoader().getResource(path).getFile());
-
-        ArrayList<String> javaFiles = new ArrayList<String>();
+        ArrayList<String> javaFiles = new ArrayList<>();
 
         //read file into stream, try-with-resources
         try (Stream<String> stream = Files.lines(Paths.get(Main.class.getClassLoader().getResource(path).getPath()))) {
