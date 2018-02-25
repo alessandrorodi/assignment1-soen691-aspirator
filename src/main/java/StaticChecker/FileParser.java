@@ -9,6 +9,8 @@ import com.github.javaparser.ast.stmt.CatchClause;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class FileParser {
@@ -19,8 +21,9 @@ public class FileParser {
             throw new IllegalArgumentException("Please provide a valid list of java files to check.");
         }
 
-        String path = FileParser.class.getClassLoader().getResource(fileName).getPath();
-        CompilationUnit unit = JavaParser.parse(new File(path));
+        //String path = FileParser.class.getClassLoader().getResource(fileName).getPath()
+        Path pathToJavaFile = Paths.get(fileName);
+        CompilationUnit unit = JavaParser.parse(pathToJavaFile.toFile());
         processAllCatchBlocks(unit,fileName);
     }
 
