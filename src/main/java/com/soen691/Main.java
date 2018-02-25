@@ -43,6 +43,9 @@ public class Main {
                 System.out.println("Error processing files "+e.getMessage());
             }
         }
+
+        //Print results
+        CheckerLogger.printReport();
     }
 
     private static void AnalyzeFiles(ArrayList<String> javaFiles){
