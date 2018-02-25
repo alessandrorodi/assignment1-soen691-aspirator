@@ -1,5 +1,6 @@
 package StaticChecker;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
@@ -26,10 +27,14 @@ public class CheckerLogger {
     }
 
     private static void logWarning(Warning warning){
-        String line = warning.getText() + " Range: " + warning.getRange() + " File name: " + warning.getFileName();
-        System.out.println(line);
+        String line = warning.getText() + " Range: " + warning.getRange() + " File name: " + warning.getFileName()+"\n";
+        System.out.print(line);
+        Path logfile = Paths.get(warning.getLogFile());
         try {
-            Files.write(Paths.get(warning.getLogFile()),line.getBytes(), StandardOpenOption.APPEND);
+            if (!Files.exists(logfile)) {
+                Files.createFile(logfile);
+            }
+            Files.write(logfile, line.getBytes(), StandardOpenOption.APPEND);
         }catch(Exception ie){
             ie.printStackTrace();
         }
