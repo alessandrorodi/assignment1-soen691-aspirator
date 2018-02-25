@@ -32,14 +32,12 @@ public class CheckerLogger {
         Path logfile = Paths.get(warning.getLogFile());
         try {
             if (!Files.exists(logfile)) {
+                Files.createDirectories(logfile.getParent());
                 Files.createFile(logfile);
             }
             Files.write(logfile, line.getBytes(), StandardOpenOption.APPEND);
         }catch(Exception ie){
             ie.printStackTrace();
         }
-
-
-
     }
 }
