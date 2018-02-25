@@ -12,7 +12,8 @@ public class ToDoOrFixMeInCatchRule implements Rule<CatchClause> {
         String codeBlock = cc.getBody().toString().trim().replaceAll("\\s ", "");
         //evaluate rule
         if((codeBlock.contains("FIXME") || codeBlock.contains("TODO"))) {
-            CheckerLogger.log(TypeOfWarning.USELESS,fileName,cc.getRange().toString());
+            String range = "Line " + cc.getRange().get().begin.line + " - Line " + cc.getRange().get().end.line;
+            CheckerLogger.log(TypeOfWarning.USELESS,fileName,range);
         }
     }
 }

@@ -30,7 +30,7 @@ public class CheckerLogger {
     }
 
     private static void logWarning(Warning warning){
-        String line = warning.getText() + " Range: " + warning.getRange() + " File name: " + warning.getFileName()+"\n";
+        String line = warning.getText() + ", Range: " + warning.getRange() + ", File name: " + warning.getFileName()+"\n";
         System.out.print(line);
         Path logfile = Paths.get(warning.getLogFile());
         try {

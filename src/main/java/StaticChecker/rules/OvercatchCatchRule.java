@@ -15,7 +15,8 @@ public class OvercatchCatchRule implements Rule<CatchClause> {
         //evaluate rule
         if((exceptionType.equals("Exception") || exceptionType.equals("Throwable") || exceptionType.equals("Error"))
                 && (codeBlock.contains("exit()") || codeBlock.contains("abort"))) {
-            CheckerLogger.log(TypeOfWarning.OVERCATCH,fileName,cc.getRange().toString());
+            String range = "Line " + cc.getRange().get().begin.line + " - Line " + cc.getRange().get().end.line;
+            CheckerLogger.log(TypeOfWarning.OVERCATCH,fileName,range);
         }
     }
 }

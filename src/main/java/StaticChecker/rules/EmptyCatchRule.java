@@ -12,7 +12,8 @@ public class EmptyCatchRule implements Rule<CatchClause> {
         String codeBlock = cc.getBody().toString().trim().replaceAll("\\s ", "");
         //evaluate rule
         if(codeBlock.equals("{}") || codeBlock.equals("{\n}") || cc.getBody().getStatements().isEmpty()){
-            CheckerLogger.log(TypeOfWarning.EMPTY,fileName,cc.getRange().toString());
+            String range = "Line " + cc.getRange().get().begin.line + " - Line " + cc.getRange().get().end.line;
+            CheckerLogger.log(TypeOfWarning.EMPTY,fileName,range);
         }
     }
 }
