@@ -19,13 +19,15 @@ public class Main {
         }
 
         for (String arg: args) {
-            ArrayList<String> javaFiles = parseTextFile(arg);
+            System.out.println("Processing argument "+arg);
+            File listOfFilesToProcess = new File(arg);
+            ArrayList<String> javaFiles = parseTextFile(listOfFilesToProcess);
             for (String javaFile : javaFiles) {
                 try{
+                    //System.out.println("Processing file "+javaFile);
                     FileParser.parseFile(javaFile);
-
                 }catch(Exception e){
-                    System.out.println(e.getStackTrace());
+                    e.printStackTrace();
                 }
             }
         }
@@ -34,11 +36,11 @@ public class Main {
     /**
      * returns an array of java code names we need to analyze.
      */
-    private static ArrayList<String> parseTextFile(String path){
+    private static ArrayList<String> parseTextFile(File file){
         ArrayList<String> javaFiles = new ArrayList<>();
 
         //read file into stream, try-with-resources
-        try (Stream<String> stream = Files.lines(Paths.get(Main.class.getClassLoader().getResource(path).getPath()))) {
+        try (Stream<String> stream = Files.lines(file.toPath())) {
 
             stream.forEach(line->{
                 javaFiles.add(line);
@@ -46,9 +48,6 @@ public class Main {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        catch (Exception e ){
-            System.out.println(e.getStackTrace());
         }
 
         return javaFiles;

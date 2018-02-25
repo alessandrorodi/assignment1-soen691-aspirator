@@ -37,7 +37,7 @@ public final class DisposableLambdaObserver<T> implements Observer<T>, Disposabl
 
     @Override
     public void onSubscribe(Disposable s) {
-        // this way, multiple calls to onSubscribe can show up in tests that use doOnSubscribe to validate behavior
+        // this way, multiple calls to onSubscribe can show up in tests that use doOnSubscribe to apply behavior
         try {
             onSubscribe.accept(s);
         } catch (Throwable e) {

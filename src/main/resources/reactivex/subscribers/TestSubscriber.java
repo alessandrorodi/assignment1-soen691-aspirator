@@ -92,7 +92,7 @@ implements FlowableSubscriber<T>, Subscription, Disposable {
 
     /**
      * Constructs a non-forwarding TestSubscriber with the specified initial request value.
-     * <p>The TestSubscriber doesn't validate the initialRequest value so one can
+     * <p>The TestSubscriber doesn't apply the initialRequest value so one can
      * test sources with invalid values as well.
      * @param initialRequest the initial request value
      */
@@ -110,7 +110,7 @@ implements FlowableSubscriber<T>, Subscription, Disposable {
 
     /**
      * Constructs a forwarding TestSubscriber with the specified initial request value.
-     * <p>The TestSubscriber doesn't validate the initialRequest value so one can
+     * <p>The TestSubscriber doesn't apply the initialRequest value so one can
      * test sources with invalid values as well.
      * @param actual the actual Subscriber to forward events to
      * @param initialRequest the initial request value

@@ -95,7 +95,7 @@ public final class ObjectHelper {
     /**
      * Validate that the given value is positive or report an IllegalArgumentException with
      * the parameter name.
-     * @param value the value to validate
+     * @param value the value to apply
      * @param paramName the parameter name of the value
      * @return value
      * @throws IllegalArgumentException if bufferSize &lt;= 0
@@ -110,7 +110,7 @@ public final class ObjectHelper {
     /**
      * Validate that the given value is positive or report an IllegalArgumentException with
      * the parameter name.
-     * @param value the value to validate
+     * @param value the value to apply
      * @param paramName the parameter name of the value
      * @return value
      * @throws IllegalArgumentException if bufferSize &lt;= 0

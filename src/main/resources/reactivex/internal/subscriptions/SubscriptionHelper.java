@@ -23,7 +23,7 @@ import io.reactivex.internal.util.BackpressureHelper;
 import io.reactivex.plugins.RxJavaPlugins;
 
 /**
- * Utility methods to validate Subscriptions in the various onSubscribe calls.
+ * Utility methods to apply Subscriptions in the various onSubscribe calls.
  */
 public enum SubscriptionHelper implements Subscription {
     /**

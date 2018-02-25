@@ -58,7 +58,7 @@ public final class FlowableDoOnLifecycle<T> extends AbstractFlowableWithUpstream
 
         @Override
         public void onSubscribe(Subscription s) {
-            // this way, multiple calls to onSubscribe can show up in tests that use doOnSubscribe to validate behavior
+            // this way, multiple calls to onSubscribe can show up in tests that use doOnSubscribe to apply behavior
             try {
                 onSubscribe.accept(s);
             } catch (Throwable e) {

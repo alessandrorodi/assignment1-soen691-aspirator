@@ -1,7 +1,5 @@
 package StaticChecker;
 
-import com.github.javaparser.JavaParser;
-
 public class StaticChecker {
 
 
