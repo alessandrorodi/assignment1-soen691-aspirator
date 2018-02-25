@@ -1,5 +1,6 @@
 package com.soen691;
 
+import StaticChecker.CheckerLogger;
 import StaticChecker.FileParser;
 
 import java.io.File;
@@ -23,6 +24,8 @@ public class Main {
             return;
         }
 
+        CheckerLogger.clearLogs();
+
         for (String arg: args) {
             try {
                 File FilesToProcess = new File(arg);
@@ -33,7 +36,7 @@ public class Main {
                     System.out.println("Processing directory "+arg);
                     AnalyzeFiles(getJavaFilesFromDirectory(FilesToProcess));
                 } else {
-                    System.out.println("Invalid Argument");
+                    System.out.println("Invalid Argument "+arg);
                     printUsage();
                 }
             } catch (Exception e){
@@ -73,7 +76,7 @@ public class Main {
 
         ArrayList<String> javaFiles = new ArrayList<>();
         Path start = Paths.get(dirName.getPath());
-        int maxDepth = 5;
+        int maxDepth = Integer.MAX_VALUE;
         try (Stream<Path> stream = Files.find(start, maxDepth, (path, attr) ->
                 String.valueOf(path).endsWith(".java"))) {
             stream.forEach(file -> javaFiles.add(file.toString()));

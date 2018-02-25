@@ -1,8 +1,11 @@
 package StaticChecker;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Comparator;
 
 public class CheckerLogger {
 
@@ -38,6 +41,20 @@ public class CheckerLogger {
             Files.write(logfile, line.getBytes(), StandardOpenOption.APPEND);
         }catch(Exception ie){
             ie.printStackTrace();
+        }
+    }
+
+    public static void clearLogs(){
+        Path logs = Paths.get("logs");
+        if (Files.exists(logs)) {
+            try {
+                Files.walk(logs)
+                        .sorted(Comparator.reverseOrder())
+                        .map(Path::toFile)
+                        .forEach(File::delete);
+            } catch (IOException e) {
+                System.out.println("Error deleting logs : " + e.getMessage());
+            }
         }
     }
 }
