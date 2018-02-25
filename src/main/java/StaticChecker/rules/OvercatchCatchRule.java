@@ -11,8 +11,9 @@ public class OvercatchCatchRule implements Rule<CatchClause> {
     public void apply(CatchClause cc, String fileName) {
         //process code block
         String codeBlock = cc.getBody().toString().trim().replaceAll("\\s ", "");
+        String exceptionType = cc.getParameter().getType().toString();
         //evaluate rule
-        if(codeBlock.contains("exit()") || codeBlock.contains("abort")) {
+        if(exceptionType.equals("Exception") && (codeBlock.contains("exit()") || codeBlock.contains("abort"))) {
             CheckerLogger.log(TypeOfWarning.OVERCATCH,fileName,cc.getRange().toString());
         }
     }
