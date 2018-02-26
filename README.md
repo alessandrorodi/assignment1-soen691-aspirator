@@ -5,7 +5,7 @@ This is an implementation of Simpirator a simple static code checker based on As
 This repository contains an IntelliJ project containing the code. The binary is located in assignment1-soen691-aspirator\out\artifacts\assignment1_soen691_aspirator_jar
 
 # Usage:
-java -jar assignment1-soen691-aspirator.jar \<path to src or txt file containing a list of files one per line\>
+java -jar assignment1-soen691-aspirator.jar \<path to src folder or a txt file containing a list of files one per line\>
 
 Example output:
 
