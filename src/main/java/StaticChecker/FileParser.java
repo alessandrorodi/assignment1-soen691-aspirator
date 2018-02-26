@@ -34,6 +34,7 @@ public class FileParser {
         ruleEvaluator.addRule(new ToDoOrFixMeInCatchRule());
         ruleEvaluator.addRule(new OvercatchCatchRule());
         for (CatchClause cc: catches) {
+            CheckerLogger.totalCatchCount++;
             ruleEvaluator.evaluateRules(cc,fileName);
         }
     }

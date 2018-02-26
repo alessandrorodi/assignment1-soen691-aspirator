@@ -91,7 +91,7 @@ public class Main {
 
     private static void printUsage(){
         System.out.println("--help print this help");
-        System.out.println("<file> list of files to analyze");
-        System.out.println("<dir> directory of files to analyze");
+        System.out.println("<file> text file with list of java files to analyze");
+        System.out.println("<dir> directory of files to analyze. Only .java files will be analyzed.");
     }
 }

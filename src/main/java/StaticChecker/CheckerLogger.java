@@ -9,11 +9,12 @@ import java.util.Comparator;
 
 public class CheckerLogger {
 
+    public static long totalCatchCount = 0;
     private static long emptyCount = 0;
     private static long overcatchCount = 0;
     private static long uselessCount = 0;
 
-    public static void log(TypeOfWarning type,String fileName, String range){
+    public static void log(TypeOfWarning type, String fileName, String range){
         Warning warning = new Warning();
         switch(type){
             case EMPTY:{
@@ -67,7 +68,8 @@ public class CheckerLogger {
 
     public static void printReport(){
         System.out.println("(i) Number of empty catch blocks: "+emptyCount);
-        System.out.println("(ii) Number of over-catches in catch blocks: "+overcatchCount);
+        System.out.println("(ii) Number of over-catches with aborts in catch blocks: "+overcatchCount);
         System.out.println("(iii) Number of TODO/FIXME in catch blocks: "+uselessCount);
+        System.out.println("(iv) Total number of catch blocks: "+totalCatchCount);
     }
 }
