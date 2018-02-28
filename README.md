@@ -1,8 +1,11 @@
 # assignment1-soen691-aspirator
 This is an implementation of Simpirator a simple static code checker based on Aspirator which is described in the research paper ‘Simple Testing Can Prevent Most Critical Failures: An Analysis of Production Failures in Distributed Data-Intensive Systems’ which was presented in 11th USENIX Symposium on  Operating Systems Design and Implementation. Aspirator is a static analyzer tool implemented to help avoid catastrophic failures by performing simple testing on error handling code.
 
-# Binary
-This repository contains an IntelliJ project containing the code. The binary is located in assignment1-soen691-aspirator\out\artifacts\assignment1_soen691_aspirator_jar
+# Download
+The binary can be downloaded here[https://github.com/alessandrorodi/assignment1-soen691-aspirator/releases/download/v0.1/assignment1-soen691-aspirator.jar]
+
+# Build
+This repository contains an IntelliJ project containing the code. Once buily the binary will be located at assignment1-soen691-aspirator\out\artifacts\assignment1_soen691_aspirator_jar
 
 # Usage:
 java -jar assignment1-soen691-aspirator.jar \<path to src folder or a txt file containing a list of files one per line\>
