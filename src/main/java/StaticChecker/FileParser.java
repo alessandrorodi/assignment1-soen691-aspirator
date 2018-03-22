@@ -29,7 +29,7 @@ public class FileParser {
 
     private static void processAllCatchBlocks(CompilationUnit cu, String fileName){
         List<CatchClause> catches = cu.findAll(CatchClause.class);
-        RuleEvaluator<CatchClause> ruleEvaluator = new RuleEvaluator<>();
+        RuleEvaluator<CatchClause> ruleEvaluator = new RuleEvaluator<CatchClause>();
         ruleEvaluator.addRule(new EmptyCatchRule());
         ruleEvaluator.addRule(new ToDoOrFixMeInCatchRule());
         ruleEvaluator.addRule(new OvercatchCatchRule());
@@ -37,5 +37,10 @@ public class FileParser {
             CheckerLogger.totalCatchCount++;
             ruleEvaluator.evaluateRules(cc,fileName);
         }
+    }
+
+    private static void findAllLogs(CompilationUnit cu, String filename){
+        //finding logs for log templates
+
     }
 }
