@@ -51,7 +51,16 @@ public class Main {
     private static void AnalyzeFiles(ArrayList<String> javaFiles){
         for (String javaFile : javaFiles) {
             try{
-                FileParser.parseFile(javaFile);
+                //FileParser.parseFile(javaFile);
+                LogTemplateGenerator ltg = new LogTemplateGenerator();
+                ltg.processFile(javaFile);
+                /*for(String template : LogTemplateGenerator.templates)
+                {
+                    System.out.println(template);
+                }
+                */
+                LogTemplateGenerator.printTemplates();
+                //ltg.printAST(javaFile);
             }catch(Exception e){
                 e.printStackTrace();
             }
