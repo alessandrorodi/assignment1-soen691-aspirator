@@ -1,7 +1,6 @@
 package com.soen691;
 
 import StaticChecker.CheckerLogger;
-import StaticChecker.FileParser;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +11,10 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public class Main {
+
+    public static final String logTemplateFile = "D:\\P\\logTemplates.txt";
+    public static final String logFile = "D:\\P\\log.txt";
+
 
     public static void main(String[] args) {
 
@@ -54,17 +57,18 @@ public class Main {
                 //FileParser.parseFile(javaFile);
                 LogTemplateGenerator ltg = new LogTemplateGenerator();
                 ltg.processFile(javaFile);
-                /*for(String template : LogTemplateGenerator.templates)
-                {
-                    System.out.println(template);
-                }
-                */
-                LogTemplateGenerator.printTemplates();
                 //ltg.printAST(javaFile);
             }catch(Exception e){
                 e.printStackTrace();
             }
         }
+        LogTemplateGenerator.printTemplates();
+        RegexGenerater rg = new RegexGenerater();
+        rg.processTemplateFile(logTemplateFile);
+        rg.printRegexes();
+
+        LogMatcher lm = new LogMatcher();
+        lm.startMaching();
     }
 
     /**
