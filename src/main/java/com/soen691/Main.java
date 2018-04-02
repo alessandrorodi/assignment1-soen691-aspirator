@@ -46,12 +46,12 @@ public class Main {
                 System.out.println("Error processing files "+e.getMessage());
             }
         }
-
         //Print results
         CheckerLogger.printReport();
     }
 
     private static void AnalyzeFiles(ArrayList<String> javaFiles){
+
         for (String javaFile : javaFiles) {
             try{
                 //FileParser.parseFile(javaFile);
@@ -63,9 +63,11 @@ public class Main {
             }
         }
         LogTemplateGenerator.printTemplates();
-        RegexGenerater rg = new RegexGenerater();
+
+        /* RegexGenerater rg = new RegexGenerater();
         rg.processTemplateFile(logTemplateFile);
         rg.printRegexes();
+        */
 
         LogMatcher lm = new LogMatcher();
         lm.startMaching();

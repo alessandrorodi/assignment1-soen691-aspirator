@@ -36,8 +36,10 @@ public class LogMatcher {
     public void matchTemplates()
     {
         for(int i=0; i<templates.size(); i++){
+            if(templates.get(i).trim().equals("") || templates.get(i).trim().equals(":") )
+                continue;
             matches.clear();
-            matches.add("TEMPLATE: " + templates.get(i));
+            matches.add("TEMPLATE: ~~~~" + templates.get(i) + "~~~~");
             processLog(i);
             createFile(i);
         }
@@ -59,11 +61,22 @@ public class LogMatcher {
         try{
             String template = templates.get(templateIndex);
             if(template.contains("*")){
-                Pattern p = Pattern.compile(template);
+                /*Pattern p = Pattern.compile(template);
                 Matcher m = p.matcher(line);
                 if (m.find()){
                     matches.add(line);
+                }*/
+                boolean match = true;
+                String[] s = template.split("~~");
+                for (String subString : s) {
+                    subString=subString.trim();
+                    if(!line.contains(subString))
+                        match = false;
                 }
+
+                if(match)
+                    matches.add(line);
+
             }else {
                 if (line.contains(template)) {
                     matches.add(line);
@@ -73,6 +86,7 @@ public class LogMatcher {
             e.printStackTrace();
         }
     }
+
 
 
     private void createFile(int i){

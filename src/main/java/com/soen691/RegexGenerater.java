@@ -34,6 +34,7 @@ public class RegexGenerater {
             template = template.replace("~~", "*");
             template = template.replace("[]", "*");
             template = template.replace("()", "*");
+            template = template.trim();
             regexes.add(template);
         }
         catch (Exception e)

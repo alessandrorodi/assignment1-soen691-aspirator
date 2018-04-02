@@ -6,10 +6,12 @@ import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.metamodel.CompilationUnitMetaModel;
+import com.github.javaparser.metamodel.ContinueStmtMetaModel;
 import com.github.javaparser.printer.JsonPrinter;
 import com.sun.javafx.collections.MappingChange;
 import javafx.beans.binding.StringExpression;
 
+import javax.naming.Context;
 import javax.naming.ldap.ExtendedRequest;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
@@ -20,7 +22,7 @@ import java.util.*;
 
 public class LogTemplateGenerator {
 
-    public static List<String> templates = new ArrayList<String>();
+    public static HashSet<String> templates = new HashSet<>();
     public Map<String, String> variableToTemplateMap = new HashMap<String, String >();
 
 
@@ -114,7 +116,8 @@ public class LogTemplateGenerator {
                             }
                             */
                             logStr = getLogTemplate(expression, logStr);
-                            templates.add(logStr);
+                            logStr = logStr.trim();
+                            addToTemplates(logStr);
                         }
                        /* for (int i = 0; i < args.size(); i++) {
                             List<StringLiteralExpr> strEx = args.get(0).findAll(StringLiteralExpr.class);
@@ -131,11 +134,37 @@ public class LogTemplateGenerator {
         }
     }
 
+    private void addToTemplates(String template){
+        try{
+            if(template.length() >2)
+            {
+                if(template.substring(0,2).equals("~~")){
+                    template = template.substring(2);
+                }
+            }
+            template = template.trim();
+            if(template.equals(""))
+                return;
+
+            if(template.length()<2)
+                return;
+
+            if(!template.contains(" "))
+                template =  " " + template + " ";
+
+            templates.add(template);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     private String getLogTemplate(Expression expression, String template){
 
         if(expression instanceof  StringLiteralExpr)
         {
-            return  template + ((StringLiteralExpr) expression).getValue();
+            return  template + "~~" + ((StringLiteralExpr) expression).getValue();
         }
         else if(expression instanceof NameExpr)
         {
